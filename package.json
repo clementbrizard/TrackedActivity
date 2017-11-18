@@ -1,0 +1,18 @@
+{
+  "name": "trackedactivity",
+  "version": "1.0.0",
+  "description": "NPM package to manage sport activities related to a GPS track",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/clementbrizard/TrackedActivity.git)"
+  },
+  "author": "Clément Brizard <clementbrizard53@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "google-distance": "^1.0.1"
+  }
+}
