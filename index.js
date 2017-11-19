@@ -266,32 +266,3 @@ console.log(marathon.isValid());
 
 // true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
