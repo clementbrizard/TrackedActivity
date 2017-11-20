@@ -22,9 +22,13 @@ class Track{
 
 	// ajoute un point à waypoints	
 
-	addPoint(lat,lon,time){
+	addPoint(point){
+		let lat= point.lat;
+		let lon= point.lon;
+		let time= point.time;
 		this.waypoints.push({lat,lon,time});
 	}
+
 
 	// calcule la durée totale
 

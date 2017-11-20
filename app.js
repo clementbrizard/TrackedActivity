@@ -17,15 +17,17 @@ console.log('Berkeley : '+Berkeley+'\n');
 console.log('\nTests pour Track : \n');
 
 track= new TA.Track([SanFrancisco]);
-console.log('Track comportant juste SanFrancisco : '+track+'\n');
+console.log('Track comportant juste SanFrancisco : '+track.waypoints);
+console.log('Taille de waypoints : '+track.waypoints.length+'\n');
 
-track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
-console.log('Ajout de Berkeley : '+track+'\n');
+track.addPoint(Berkeley);
+console.log('Ajout de Berkeley : '+track.waypoints);
+console.log('Taille de waypoints : '+track.waypoints.length+'\n');
 
 console.log('Durée totale : '+track.getTotalDuration()+'\n');
 
-track.addPoint(SanFrancisco.lat,SanFrancisco.lon,SanFrancisco.time);
-track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
+track.addPoint(SanFrancisco);
+track.addPoint(Berkeley);
 console.log('Ajout de deux points supplémentaires (on remet SanFrancisco et Berkeley) et calcul de la distance parcourue : \n');
 track.getDistance();
 console.log('Voir résultat tout en bas du terminal \n');
