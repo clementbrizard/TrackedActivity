@@ -1,5 +1,4 @@
 
-
 /*******************GPSPoint**********************/
 
 // Utilisé par l'attribut waypoints de Track
@@ -11,21 +10,6 @@ class GPSPoint {
 		this.time = time; // définir l'unité : dixième de seconde ?
   }
 }
-
-/***********Tests***********/
-
-SanFrancisco = new GPSPoint (37.772886,-122.423771,1484847603025);
-Berkeley = new GPSPoint (37.871601,-122.269104,5478912345784);
-
-//console.log(SanFrancisco);
-//console.log(Berkeley);
-
-/*
-
-GPSPoint { lat: 37.772886, lon: -122.423771, time: 1484847603025 }
-GPSPoint { lat: 37.871601, lon: -122.269104, time: 5478912345784 }
-
-*/
 
 
 /*******************Track**********************/
@@ -54,6 +38,7 @@ class Track{
 		let module = require ('./getDistance');
 		module.getDistanceTab(this.waypoints)
 		.then( values => {
+			console.log('Résultat de la distance parcourue : ');
 			console.log('Distances intermédiaires : '+ values + ' (en m)');
 			let sum= 0;
 			for (var i= 0; i< values.length; i++)
@@ -95,53 +80,6 @@ class Track{
 */
 
 }
-
-/***********Tests***********/
-
-// Création d'un Track à un point
-
-track= new Track([SanFrancisco]);
-//console.log(track);
-
-/*
-
-Track {
-  waypoints: [ GPSPoint { lat: 37.772886, lon: -122.423771, time: 1484847603025 } ] }
-
-*/
-
-// ajout d'un point
-
-track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
-//console.log(track);
-
-/*
-
-Track {
-  waypoints: 
-   [ GPSPoint { lat: 37.772886, lon: -122.423771, time: 1484847603025 },
-     { lat: 37.871601, lon: -122.269104, time: 5478912345784 } ] }
-
-*/
-
-// calcul de la durée totale
-
-//console.log(track.getTotalDuration());
-
-// 3994064742759
-
-// calcul de la distance totale
-
-track.addPoint(SanFrancisco.lat,SanFrancisco.lon,SanFrancisco.time);
-track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
-track.getDistance();
-
-/*
-
-[ 21951, 22256, 21951 ]
-66.158
-
-*/
 
 
 /*******************Activity**********************/
@@ -205,29 +143,6 @@ class Activity {
 
 }
 
-/***********Tests***********/
-
-// création d'une activity
-
-activity= new Activity('running',track);
-//console.log(activity);
-
-/*
-
-Activity {
-  type: 'running',
-  track: Track { waypoints: [ [Object], [Object] ] },
-  duration: 3994064742759 }
-
-*/
-
-// affichage des types d'activité possibles
-
-//console.log(Activity.getSportTypes());
-
-// [ 'running', 'cycling', 'walking' ]
-
-
 
 /*******************Marathon**********************/
 
@@ -252,26 +167,10 @@ class Marathon extends Activity{
 
 }
 
-/***********Tests***********/
-
-// création d'un marathon
-
-marathon= new Marathon(track);
-//console.log(marathon);
-
-/*
-
-Marathon {
-  type: 'running',
-  track: Track { waypoints: [ [Object], [Object] ] },
-  duration: 3994064742759,
-  distance: 42 }
-
-*/
-
-// teste si marathon est valide
-
-//console.log(marathon.isValid());
-
-// true
+module.exports = {
+  GPSPoint : GPSPoint,
+  Track : Track,
+	Activity : Activity,
+	Marathon : Marathon
+}
 
