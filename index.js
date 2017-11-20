@@ -4,7 +4,6 @@
 
 // Utilisé par l'attribut waypoints de Track
 
-
 class GPSPoint {
   constructor(lat,lon,time) {
     this.lat = lat;
@@ -18,8 +17,8 @@ class GPSPoint {
 SanFrancisco = new GPSPoint (37.772886,-122.423771,1484847603025);
 Berkeley = new GPSPoint (37.871601,-122.269104,5478912345784);
 
-console.log(SanFrancisco);
-console.log(Berkeley);
+//console.log(SanFrancisco);
+//console.log(Berkeley);
 
 /*
 
@@ -49,24 +48,21 @@ class Track{
 		return (this.waypoints[this.waypoints.length-1].time - this.waypoints[0].time);
 	}
 
-	// calcule la distance entre 2 points GPS (en m)
-
-/*getDistance2Points(point1,point2){
-		On calcule la distance entre deux points avec la méthode "get" du package
-		npm google-distance.
-		--> En cours d'implémentation. Des difficultés avec la technique des promises.
+	// calcule la distance parcourue
+	
+	getDistance(){
+		let module = require ('./getDistance');
+		module.getDistanceTab(this.waypoints)
+		.then( values => {
+			console.log('Distances intermédiaires : '+ values + ' (en m)');
+			let sum= 0;
+			for (var i= 0; i< values.length; i++)
+				sum+= values[i];
+			console.log('Distance parcourue : '+ sum/1000 + ' km');
+		}, error => {
+			console.log(err);
+		});
 	}
-*/
-
-	// calcule la distance parcourue (en km)
-
-/*getDistance(){
-		distanceTotale = getDistance2Points(point1,point2) + getDistance(point2,point3)
-		+ ... getDistance(point n-1,point n)
-		Convertir le résultat en km.
-		--> À faire quand getDistance2Points est ok.
-	}
-*/
 
 	// calcule la vitesse étant données une distance et une durée (en km/h)
 	// ok quand getDistance() sera ok
@@ -105,7 +101,7 @@ class Track{
 // Création d'un Track à un point
 
 track= new Track([SanFrancisco]);
-console.log(track);
+//console.log(track);
 
 /*
 
@@ -117,7 +113,7 @@ Track {
 // ajout d'un point
 
 track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
-console.log(track);
+//console.log(track);
 
 /*
 
@@ -130,9 +126,22 @@ Track {
 
 // calcul de la durée totale
 
-console.log(track.getTotalDuration());
+//console.log(track.getTotalDuration());
 
 // 3994064742759
+
+// calcul de la distance totale
+
+track.addPoint(SanFrancisco.lat,SanFrancisco.lon,SanFrancisco.time);
+track.addPoint(Berkeley.lat,Berkeley.lon,Berkeley.time);
+track.getDistance();
+
+/*
+
+[ 21951, 22256, 21951 ]
+66.158
+
+*/
 
 
 /*******************Activity**********************/
@@ -201,7 +210,7 @@ class Activity {
 // création d'une activity
 
 activity= new Activity('running',track);
-console.log(activity);
+//console.log(activity);
 
 /*
 
@@ -214,7 +223,7 @@ Activity {
 
 // affichage des types d'activité possibles
 
-console.log(Activity.getSportTypes());
+//console.log(Activity.getSportTypes());
 
 // [ 'running', 'cycling', 'walking' ]
 
@@ -248,7 +257,7 @@ class Marathon extends Activity{
 // création d'un marathon
 
 marathon= new Marathon(track);
-console.log(marathon);
+//console.log(marathon);
 
 /*
 
@@ -262,7 +271,7 @@ Marathon {
 
 // teste si marathon est valide
 
-console.log(marathon.isValid());
+//console.log(marathon.isValid());
 
 // true
 
