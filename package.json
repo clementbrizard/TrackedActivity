@@ -13,6 +13,7 @@
   "author": "Clément Brizard <clementbrizard53@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "dark-sky": "^1.1.2",
     "google-distance": "^1.0.1"
   }
 }
