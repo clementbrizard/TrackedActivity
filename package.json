@@ -4,8 +4,8 @@
   "description": "NPM package to manage sport activities related to a GPS track",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+		"start": "node app.js"
+	},
   "repository": {
     "type": "git",
     "url": "(https://github.com/clementbrizard/TrackedActivity.git)"
@@ -15,5 +15,7 @@
   "dependencies": {
     "dark-sky": "^1.1.2",
     "google-distance": "^1.0.1"
+  },
+  "devDependencies": {
   }
 }

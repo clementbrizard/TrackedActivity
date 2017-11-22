@@ -3,8 +3,12 @@ waypoint = require('./index.js');
 
 let googleDistance=require('google-distance');
 
+
+/***********Gestion du calcul des distances************/
+
+
 /**
-*	Returns the distance between two waypoints.
+* Returns the distance between two waypoints.
 * @return {Promise} - Promise object that represents 
 * the distance between two waypoints.
 */
@@ -76,25 +80,53 @@ let getActiveDurations = (points,period,minSpeed) => {
 	})
 }
 
+
+/*******Gestion des temps calculés***********/
+
+
+/**
+* Converts a floating number representing a time in a classic format (hours minutes)
+* to a number in a "proportional" format : if the number of minutes was 30, then it becomes 50 
+* because 30 minutes is 50 % of an hour. Useful when calculating a speed (so dividing by the duration
+* which must be in a "proportional format").
+* @return {number} - A time converted to a "Proportional format".
+*/
+
+let toProportional = time => {
+	let hours = Math.trunc(time);
+	let mins = Math.round((time-hours)*100);
+	mins = mins/60 *100;
+	return hours+mins/100;
+}
+
+/**
+* Converts a floating number representing a time in a proportional format (hours minutes)
+* to a number in a classic format : if the number of minutes was 50, then it becomes 30 
+* because 50 % of an hour is 30 minutes.
+* @return {number} - A time converted to a classic format.
+*/
+
+let toClassic = time => {
+	let hours = Math.trunc(time);
+	let mins = Math.round((time-hours)*100);
+	mins = mins/100 *60;
+	return hours+mins/100;
+}
+
+/**
+* Displays a time in a classic way : if 1,3 is received in parameter, then the function
+* will display "1 h 30".
+*/
+
+let displayTime = time => {	
+	let hours = Math.trunc(time);
+	let mins = Math.round((time-hours)*100);
+	console.log(hours+ ' h '+mins+' min');
+}
+
 exports.getDistances = getDistances;
 exports.getActiveDurations = getActiveDurations;
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
+exports.toProportional = toProportional;
+exports.toClassic = toClassic;
+exports.displayTime = displayTime;
 
