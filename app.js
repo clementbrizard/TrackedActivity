@@ -69,7 +69,7 @@ console.log(TA.Activity.getSportTypes()+'\n');
 console.log('L"activité est-elle valide : ');
 console.log(activity.isValid()+'\n');
 
-console.log('Le test peut ici échouer à cause d"une donnée manquante : la distance. C"est setDistanceFromTrack() qui lui donne sa valeur, qu"on calcule ici à la fin des tests, avec les autres fonctions asynchrones. Une possibilité serait d"appeler la fonction isValid() dans un .then suivant setDistanceFromTrack(). Mais on ne pourrait alors plus tester la validité quand on le souhaite. On décide donc d"empêcher le test quand la distance n"est pas encore connue. D"où le message et le "undefined" ci-dessous.\n');
+console.log('Le test peut ici échouer à cause d"une donnée manquante : la distance. C"est setDistanceFromTrack() qui lui donne sa valeur, qu"on calcule ici à la fin des tests, avec les autres fonctions asynchrones. Une possibilité serait d"appeler la fonction isValid() dans un .then suivant setDistanceFromTrack(). Mais on ne pourrait alors plus tester la validité quand on le souhaite. On décide donc d"empêcher le test quand la distance n"est pas encore connue. D"où le message et le "undefined" ci-dessus.\n');
 
 
 /***********Marathon***********/
