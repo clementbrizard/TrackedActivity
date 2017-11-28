@@ -15,7 +15,7 @@ class Waypoint {
   constructor(lat,lon,time) {
     this.lat = lat;
     this.lon = lon;
-		this.time = time; 
+    this.time = time; 
   }
 }
 
